@@ -1,0 +1,61 @@
+section {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 1rem 0;
+}
+
+.taskCount {
+  color: var(--blue);
+  font-weight: 700;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.taskCount > div,
+.taskConcluded > div {
+  display: flex;
+  align-self: flex-start;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-200);
+  background: var(--gray-400);
+  width: 2rem;
+  border-radius: 1.5rem;
+}
+.taskConcluded {
+  color: var(--purple);
+  font-weight: 700;
+  display: flex;
+  gap: 0.5rem;
+}
+
+hr {
+  width: 100%;
+  margin: 1.5rem;
+  background: var(--gray-400);
+  height: 1px;
+  border: none;
+  margin-bottom: 1.7rem;
+}
+
+.taskList {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+}
+
+@media (max-width: 570px) {
+  section {
+    width: 100%;
+  }
+}

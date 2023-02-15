@@ -1,0 +1,26 @@
+section {
+  width: 100%;
+}
+
+.task {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--gray-500);
+  color: var(--gray-100);
+  border-radius: 0.75rem;
+  height: 4.5rem;
+  align-items: center;
+  justify-content: space-around;
+  width: 90%;
+}
+.task p {
+  flex: 1;
+}
+
+.task input {
+  align-self: flex-start;
+}
+.task :last-child {
+  margin-left: auto;
+}
