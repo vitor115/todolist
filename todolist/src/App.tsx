@@ -3,21 +3,26 @@ import "./global.css";
 import styles from "./App.module.css";
 import { PlusCircle } from "phosphor-react";
 import { TaskList } from "./components/TasksList";
-import { useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const [content, setContent] = useState("");
   const [newTask, setNewTask] = useState({});
+  const isNewTaskEmpty = content.length === 0;
 
-  function handleSubmit() {
+  function handleSubmit(event: FormEvent) {
+    event.preventDefault();
     setNewTask({
       id: uuidv4(),
       content: content,
       checked: false,
     });
+    setContent("");
   }
-
+  useEffect(() => {
+    console.log(isNewTaskEmpty);
+  }, [newTask]);
   return (
     <div className={styles.main}>
       <Header />
@@ -27,8 +32,13 @@ function App() {
             type="text"
             placeholder="Adicione uma nova tarefa"
             onChange={(e) => setContent(e.target.value)}
+            value={content}
           />
-          <button type="submit" onClick={handleSubmit}>
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            disabled={isNewTaskEmpty}
+          >
             Criar
             <PlusCircle />
           </button>
