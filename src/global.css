@@ -37,3 +37,8 @@ button {
   font-size: 1rem;
   line-height: 140%;
 }
+
+#root {
+  position: relative;
+  min-height: 100vh;
+}

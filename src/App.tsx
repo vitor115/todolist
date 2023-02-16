@@ -20,9 +20,6 @@ function App() {
     });
     setContent("");
   }
-  useEffect(() => {
-    console.log(isNewTaskEmpty);
-  }, [newTask]);
   return (
     <div className={styles.main}>
       <Header />
@@ -45,7 +42,9 @@ function App() {
         </form>
         <TaskList newTask={newTask ? newTask : null} />
       </section>
-      <footer>Vitor Ravacci @2023</footer>
+      <footer>
+        <p>Vitor Ravacci @2023</p>
+      </footer>
     </div>
   );
 }

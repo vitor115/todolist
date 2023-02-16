@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  height: 100%;
 }
 .section {
   display: flex;
@@ -12,6 +13,7 @@
   flex-direction: column;
   gap: 5.75rem;
   width: 100%;
+  padding-bottom: 2.5rem;
 }
 
 .section form {
@@ -60,18 +62,12 @@ button[type="submit"]:not(:disabled):hover {
 }
 
 footer {
-  margin: 2rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
 }
-
-/* @media (max-width: 600px) {
-  .section form {
-    margin: -1.75rem;
-    width: 100%;
-  }
-  .section form input {
-    width: 100%;
-  }
-} */

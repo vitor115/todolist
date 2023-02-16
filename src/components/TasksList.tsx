@@ -2,19 +2,23 @@ import { useEffect, useState } from "react";
 import { Task, TaskProps } from "./Task";
 import styles from "./TasksList.module.css";
 import { v4 as uuidv4 } from "uuid";
+import { EmptyTask } from "./EmptyTask";
 
 export function TaskList(props: any) {
   const [taskList, setTaskList] = useState<TaskProps[]>([
     {
       id: uuidv4(),
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum voluptatibus aliquid eum",
+      content: "Fazer um site para armazenar tarefas",
+      checked: true,
+    },
+    {
+      id: uuidv4(),
+      content: "Tomar 2L de água por dia",
       checked: false,
     },
     {
       id: uuidv4(),
-      content:
-        "Vitor, consectetur adipisicing elit. Illum voluptatibus aliquid eum",
+      content: "Evoluir como Desenvolvedor",
       checked: false,
     },
   ]);
@@ -60,6 +64,20 @@ export function TaskList(props: any) {
     }
   }
 
+  function listTasks() {
+    return taskList.map((task) => {
+      return (
+        <Task
+          key={task.id}
+          id={task.id}
+          content={task.content}
+          checked={task.checked}
+          handleFunction={handleTaskInteraction}
+        />
+      );
+    });
+  }
+
   useEffect(() => {
     onNewTask(props.newTask);
   }, [props.newTask]);
@@ -80,17 +98,7 @@ export function TaskList(props: any) {
       </header>
       <hr />
       <section className={styles.taskList}>
-        {taskList.map((task) => {
-          return (
-            <Task
-              key={task.id}
-              id={task.id}
-              content={task.content}
-              checked={task.checked}
-              handleFunction={handleTaskInteraction}
-            />
-          );
-        })}
+        {taskList.length !== 0 ? listTasks() : <EmptyTask />}
       </section>
     </section>
   );
