@@ -18,7 +18,10 @@ export function Checkbox({ check, handleFunction }: CheckboxProps) {
     <div className={styles.container}>
       <div
         className={styles.check}
-        style={{ backgroundColor: checked ? "var(--purple-dark)" : "" }}
+        style={{
+          transition: "0.3s all",
+          backgroundColor: checked ? "var(--purple-dark)" : "",
+        }}
         onClick={handleOnClick}
       >
         {checked ? <Check size={12} /> : ""}

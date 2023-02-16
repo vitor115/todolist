@@ -21,7 +21,14 @@ export function Task({ content, checked, handleFunction, id }: TaskProps) {
       <div className={styles.task}>
         <Checkbox check={checked} handleFunction={handleFunctions} />
 
-        <p>{content}</p>
+        <p
+          style={{
+            textDecoration: checked ? "line-through" : "none",
+            opacity: checked ? "0.5" : "1",
+          }}
+        >
+          {content}
+        </p>
         <Trash size={20} onClick={handleOnClickDelete} />
       </div>
     </section>
