@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import { Task, TaskProps } from "./Task";
 import styles from "./TasksList.module.css";
+import { v4 as uuidv4 } from "uuid";
 
-export function TaskList() {
+export function TaskList(props: any) {
   const [taskList, setTaskList] = useState<TaskProps[]>([
     {
-      id: 1,
+      id: uuidv4(),
       content:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum voluptatibus aliquid eum",
-      checked: true,
+      checked: false,
     },
     {
-      id: 2,
+      id: uuidv4(),
       content:
         "Vitor, consectetur adipisicing elit. Illum voluptatibus aliquid eum",
       checked: false,
@@ -24,16 +25,47 @@ export function TaskList() {
     });
     return completedTasks.length;
   }
-
-  //VISITAR AMANHA NAO ENTENDI
-  function handleOnCheck(id: number): void {
-    const task = taskList;
-    console.log(task);
-    task[id - 1].checked = !task[id - 1].checked;
-    setTaskList(task);
-    console.log(taskList);
+  function onNewTask(newTask: TaskProps) {
+    if (
+      newTask !== null &&
+      newTask !== undefined &&
+      Object.keys(newTask).length !== 0
+    ) {
+      setTaskList([...taskList, newTask]);
+    }
   }
-  /* useEffect(() => {}, [countCompletedTasks]); */
+
+  function onDeleteTask(id: string): void {
+    const taskWithoutInteractedTask = taskList.filter((task) => task.id != id);
+    setTaskList(taskWithoutInteractedTask);
+  }
+
+  function onCheckInteraction(id: string) {
+    const taskToBeUpdated = taskList.map((task) => {
+      if (task.id === id) {
+        return { ...task, checked: !task.checked };
+      } else {
+        return task;
+      }
+    });
+    setTaskList(taskToBeUpdated);
+  }
+  function handleTaskInteraction(id: string, action?: string): void {
+    if (action === "delete") {
+      onDeleteTask(id);
+    } else if (action === "check") {
+      onCheckInteraction(id);
+    } else {
+      console.error("error 404");
+    }
+  }
+
+  useEffect(() => {
+    onNewTask(props.newTask);
+  }, [props.newTask]);
+
+  useEffect(() => {}, []);
+
   return (
     <section>
       <header>
@@ -55,7 +87,7 @@ export function TaskList() {
               id={task.id}
               content={task.content}
               checked={task.checked}
-              handleFunction={handleOnCheck}
+              handleFunction={handleTaskInteraction}
             />
           );
         })}

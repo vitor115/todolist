@@ -54,6 +54,13 @@
   background: var(--blue);
 }
 
+footer {
+  margin: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* @media (max-width: 600px) {
   .section form {
     margin: -1.75rem;

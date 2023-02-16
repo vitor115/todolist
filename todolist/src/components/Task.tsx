@@ -3,15 +3,18 @@ import styles from "./Task.module.css";
 import { Trash } from "phosphor-react";
 
 export interface TaskProps {
-  id: number;
+  id: string;
   content: string;
   checked: boolean;
-  handleFunction?: (id: number) => void;
+  handleFunction?: (id: string, action?: string) => void;
 }
 
 export function Task({ content, checked, handleFunction, id }: TaskProps) {
-  function handleFunctions() {
-    handleFunction ? handleFunction(id) : "";
+  function handleFunctions(action: string) {
+    handleFunction ? handleFunction(id, action) : "";
+  }
+  function handleOnClickDelete() {
+    handleFunction ? handleFunction(id, "delete") : "";
   }
   return (
     <section>
@@ -19,7 +22,7 @@ export function Task({ content, checked, handleFunction, id }: TaskProps) {
         <Checkbox check={checked} handleFunction={handleFunctions} />
 
         <p>{content}</p>
-        <Trash size={20} />
+        <Trash size={20} onClick={handleOnClickDelete} />
       </div>
     </section>
   );

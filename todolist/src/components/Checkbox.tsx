@@ -4,14 +4,14 @@ import { Check } from "phosphor-react";
 
 interface CheckboxProps {
   check: boolean;
-  handleFunction: () => void;
+  handleFunction: (action: string) => void;
 }
 
 export function Checkbox({ check, handleFunction }: CheckboxProps) {
   const [checked, setChecked] = useState(check);
   function handleOnClick() {
     setChecked(!checked);
-    handleFunction();
+    handleFunction("check");
   }
 
   return (
